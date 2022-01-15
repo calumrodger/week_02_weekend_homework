@@ -1,0 +1,9 @@
+bar_1.rooms[0].guests[0].fav_song  --- gives fav_song of first guest in first room 
+bar_1.rooms[0].guests[0].fav_song.artist  --- gives artist of fav_song of first guest in first room 
+bar_1.rooms[1].guests[2].fav_song.artist  --- gives artist of fav_song of 2nd guest in 3rd room 
+
+this is the whole point of using classes and composition in this way
+
+for guest in room 2
+if fav_song.name == guest_2.fav_song.name
+return wooo

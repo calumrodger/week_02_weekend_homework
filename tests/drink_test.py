@@ -4,7 +4,7 @@ from classes.room import Room
 from classes.song import Song
 from classes.drink import Drink
 
-class TestSong(unittest.TestCase):
+class TestDrink(unittest.TestCase):
     def setUp(self):
         self.drink_1 = Drink("Heineken", 2)
         self.drink_2 = Drink("Double Voddy", 3)
@@ -21,6 +21,9 @@ class TestSong(unittest.TestCase):
         self.guest_4 = Guest("Tom", 20, self.song_4)
         self.guest_5 = Guest("Ephesia", 100, self.song_3)
         self.guest_6 = Guest("Norbert", 9, self.song_4)
-
-    def test_song_has_name(self):
-        self.assertEqual("Walking on Sunshine", self.song_1.name)
+    
+    def test_drink_has_name(self):
+        self.assertEqual("Heineken", self.drink_1.name)
+    
+    def test_drink_has_price(self):
+        self.assertEqual(2, self.drink_1.price)
