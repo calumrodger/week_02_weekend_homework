@@ -6,11 +6,12 @@ from classes.drink import Drink
 
 class TestRoom(unittest.TestCase):
     def setUp(self):
+        self.drinks = (Drink("Heineken", 2), Drink("Double Voddy", 3))
         self.drink_1 = Drink("Heineken", 2)
         self.drink_2 = Drink("Double Voddy", 3)
         self.drink_3 = Drink("Shochu", 3)
-        self.room_1 = Room("Room 213", 5, 0)
-        self.room_2 = Room("Cosy Corner", 2, 0)
+        self.room_1 = Room("Room 213", 5, 0, 5, True)
+        self.room_2 = Room("Cosy Corner", 2, 0, 10, False)
         self.song_1 = Song("Walking on Sunshine")
         self.song_2 = Song("Song 2")
         self.song_3 = Song("4:33")
@@ -32,8 +33,8 @@ class TestRoom(unittest.TestCase):
         self.room_1.guest_checks_in(self.guest_1, self.room_1)
         # self.room_1.add_entry_fee_to_tab()
         self.assertEqual(1, len(self.room_1.current_guests))
-        self.assertEqual(10, self.guest_1.wallet)
-        self.assertEqual(10, self.room_1.tab)
+        self.assertEqual(15, self.guest_1.wallet)
+        self.assertEqual(5, self.room_1.tab)
 
     def test_guest_checks_out(self):
         self.room_1.guest_checks_in(self.guest_1, self.room_1)
@@ -51,10 +52,15 @@ class TestRoom(unittest.TestCase):
 
     def test_add_entry_fee_to_tab(self):
         self.room_1.add_entry_fee_to_tab()
-        self.assertEqual(10, self.room_1.tab)
+        self.assertEqual(5, self.room_1.tab)
 
     def test_add_drink(self):
         self.room_1.add_drink(self.drink_1)
+        self.assertEqual(1, len(self.room_1.drink_list))
+
+# an alternative - make list of objects rather than create them individually
+    def test_add_drink(self):
+        self.room_1.add_drink(self.drinks[0])
         self.assertEqual(1, len(self.room_1.drink_list))
 
     def test_tab_accumulation(self):
@@ -71,6 +77,9 @@ class TestRoom(unittest.TestCase):
         self.assertEqual(8, self.guest_1.wallet)
         self.assertEqual(7, self.guest_2.wallet)
         self.assertEqual(25, self.room_2.tab)
+
+    def test_has_tambourine(self):
+        self.assertEqual("yes, it has a tambourine!!", self.room_1.has_tambourine())
 
 
 

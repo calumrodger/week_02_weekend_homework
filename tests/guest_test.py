@@ -9,8 +9,8 @@ class TestGuest(unittest.TestCase):
         self.drink_1 = Drink("Heineken", 2)
         self.drink_2 = Drink("Double Voddy", 3)
         self.drink_3 = Drink("Shochu", 3)
-        self.room_1 = Room("Room 213", 5, 0)
-        self.room_2 = Room("Cosy Corner", 2, 0)
+        self.room_1 = Room("Room 213", 5, 0, 5, True)
+        self.room_2 = Room("Cosy Corner", 2, 0, 10, False)
         self.song_1 = Song("Walking on Sunshine")
         self.song_2 = Song("Song 2")
         self.song_3 = Song("4:33")
@@ -30,12 +30,12 @@ class TestGuest(unittest.TestCase):
         self.assertEqual(20, self.guest_1.wallet)
  
     def test_pay_entry(self):
-        self.guest_1.pay_entry()
-        self.assertEqual(10, self.guest_1.wallet)
+        self.guest_1.pay_entry(self.room_1)
+        self.assertEqual(15, self.guest_1.wallet)
 
     def test_pay_entry_2(self):
-        self.guest_6.pay_entry()
-        self.assertEqual("not tonight pal", self.guest_6.pay_entry())
+        self.guest_6.pay_entry(self.room_1)
+        self.assertEqual("not tonight pal", self.guest_6.pay_entry(self.room_1))
 
     def test_guest_fav_song_is_on_list(self):
         self.room_1.add_song(self.song_1)

@@ -5,9 +5,9 @@ class Guest:
         self.wallet = wallet
         self.fav_song = fav_song
 
-    def pay_entry(self):
-        if self.wallet >= 10:
-            self.wallet -= 10
+    def pay_entry(self, room):
+        if self.wallet >= room.entry_fee:
+            self.wallet -= room.entry_fee
         else:
             return("not tonight pal")
 
